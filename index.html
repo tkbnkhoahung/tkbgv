@@ -3043,8 +3043,8 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                         } else if (viewType === 'teacher') {
                             subjectCell.innerHTML = `
                                 <div class="subject-name">${subjectData.Subject}</div>
-                                <div class="teacher-name">${subjectData['Students Sets']}</div>
-                                <div class="room-name">${subjectData.Room}</div>
+                                <div class="teacher-name">${subjectData['Students Sets']} (${subjectData.Room})</div>
+                                <div class="room-name"></div>
                             `;
                         } else if (viewType === 'room') {
                             subjectCell.innerHTML = `
@@ -3145,8 +3145,8 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     reader.readAsDataURL(avatarFile);
                     
                     avatarImg.style.cssText = `
-                        width: 60px;
-                        height: 60px;
+                        width: 78px;
+                        height: 78px;
                         border-radius: 50%;
                         object-fit: cover;
                         border: 3px solid white;
@@ -3370,7 +3370,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                         } else if (currentViewMode === 'teacher') {
                             subjectCell.innerHTML = `
                                 <div style="font-weight: bold;">${subjectAbbr}</div>
-                                <div style="font-size: 5px; opacity: 0.8;">${subjectData['Students Sets']}</div>
+                                <div style="font-size: 5px; opacity: 0.8;">${subjectData['Students Sets']} (${subjectData.Room})</div>
                             `;
                         } else if (currentViewMode === 'room') {
                             subjectCell.innerHTML = `
@@ -3468,7 +3468,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     // Avatar section
                     if (avatarFile) {
                         const avatarImg = document.createElement('img');
-                        const avatarSize = Math.floor(Math.min(width, height) * 0.12);
+                        const avatarSize = Math.floor(Math.min(width, height) * 0.156);
                         
                         const reader = new FileReader();
                         await new Promise((resolve) => {
@@ -3567,7 +3567,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     // Avatar section
                     if (avatarFile) {
                         const avatarImg = document.createElement('img');
-                        const avatarSize = Math.floor(width * 0.15);
+                        const avatarSize = Math.floor(width * 0.195);
                         
                         const reader = new FileReader();
                         await new Promise((resolve) => {
@@ -3828,7 +3828,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     // Avatar section
                     if (avatarFile) {
                         const avatarImg = document.createElement('img');
-                        const avatarSize = Math.floor(Math.min(width, height) * 0.15);
+                        const avatarSize = Math.floor(Math.min(width, height) * 0.195);
                         
                         const reader = new FileReader();
                         await new Promise((resolve) => {
@@ -3857,7 +3857,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     let titleText = '';
                     
                     if (wallpaperStudentName && className) {
-                        titleText = `Nguyễn Khuyến là nhà của "${wallpaperStudentName}" lớp ${className}`;
+                        titleText = `Nguyễn Khuyến là nhà của ${wallpaperStudentName} lớp ${className}`;
                     } else if (currentViewMode === 'teacher') {
                         const teacherName = document.getElementById('teacherSearch').value;
                         titleText = teacherName || 'Giáo viên';
@@ -3907,7 +3907,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     // Avatar section
                     if (avatarFile) {
                         const avatarImg = document.createElement('img');
-                        const avatarSize = Math.floor(width * 0.125);
+                        const avatarSize = Math.floor(width * 0.1625);
                         
                         const reader = new FileReader();
                         await new Promise((resolve) => {
@@ -3936,7 +3936,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     let titleText = '';
                     
                     if (wallpaperStudentName && className) {
-                        titleText = `Nguyễn Khuyến là nhà của "${wallpaperStudentName}" lớp ${className}`;
+                        titleText = `Nguyễn Khuyến là nhà của ${wallpaperStudentName} lớp ${className}`;
                     } else if (currentViewMode === 'teacher') {
                         const teacherName = document.getElementById('teacherSearch').value;
                         titleText = teacherName || 'Giáo viên';
@@ -4053,13 +4053,13 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
             
             // Create table
             const table = document.createElement('table');
-            const fontSize = Math.floor(baseSize * 0.02);
-            const cellPadding = Math.floor(baseSize * 0.003);
+            const fontSize = Math.floor(baseSize * 0.032);
+            const cellPadding = Math.floor(baseSize * 0.005);
             
             table.style.cssText = `
                 border-collapse: collapse;
                 font-size: ${fontSize}px;
-                line-height: 1.1;
+                line-height: 1.2;
                 table-layout: auto;
                 width: auto;
                 margin: 0 auto;
@@ -4137,17 +4137,18 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                     subjectCell.style.cssText = `
                         border: 1px solid #e5e7eb;
                         padding: ${cellPadding}px ${cellPadding * 1.5}px;
-                        font-size: ${Math.floor(fontSize * 0.85)}px;
+                        font-size: ${Math.floor(fontSize * 0.9)}px;
                         text-align: center;
-                        line-height: 1.1;
+                        line-height: 1.2;
                         vertical-align: middle;
                         background: rgba(255, 255, 255, 0.3);
                         width: auto;
-                        min-width: ${Math.floor(baseSize * 0.08)}px;
+                        min-width: ${Math.floor(baseSize * 0.12)}px;
                     `;
                     
                     if (subjectData) {
-                        const subjectAbbr = subjectAbbreviations[subjectData.Subject] || subjectData.Subject.substring(0, 2);
+                        // Use full subject name instead of abbreviation
+                        const subjectName = subjectData.Subject;
                         
                         // Get theme colors
                         let bgColor = '#f3f4f6';
@@ -4176,18 +4177,18 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                         
                         if (currentViewMode === 'class') {
                             subjectCell.innerHTML = `
-                                <div style="font-weight: bold; margin-bottom: 1px;">${subjectAbbr}</div>
-                                <div style="font-size: ${Math.floor(fontSize * 0.7)}px; opacity: 0.8;">${subjectData.Room}</div>
+                                <div style="font-weight: bold; margin-bottom: 2px; font-size: ${Math.floor(fontSize * 0.9)}px;">${subjectName}</div>
+                                <div style="font-size: ${Math.floor(fontSize * 0.65)}px; opacity: 0.8;">${subjectData.Room}</div>
                             `;
                         } else if (currentViewMode === 'teacher') {
                             subjectCell.innerHTML = `
-                                <div style="font-weight: bold; margin-bottom: 1px;">${subjectAbbr}</div>
-                                <div style="font-size: ${Math.floor(fontSize * 0.7)}px; opacity: 0.8;">${subjectData['Students Sets']}</div>
+                                <div style="font-weight: bold; margin-bottom: 2px; font-size: ${Math.floor(fontSize * 0.9)}px;">${subjectName}</div>
+                                <div style="font-size: ${Math.floor(fontSize * 0.65)}px; opacity: 0.8;">${subjectData['Students Sets']} (${subjectData.Room})</div>
                             `;
                         } else if (currentViewMode === 'room') {
                             subjectCell.innerHTML = `
-                                <div style="font-weight: bold; margin-bottom: 1px;">${subjectAbbr}</div>
-                                <div style="font-size: ${Math.floor(fontSize * 0.7)}px; opacity: 0.8;">${subjectData['Students Sets']}</div>
+                                <div style="font-weight: bold; margin-bottom: 2px; font-size: ${Math.floor(fontSize * 0.9)}px;">${subjectName}</div>
+                                <div style="font-size: ${Math.floor(fontSize * 0.65)}px; opacity: 0.8;">${subjectData['Students Sets']}</div>
                             `;
                         }
                     }
@@ -4605,7 +4606,7 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
                         } else if (currentViewMode === 'teacher') {
                             subjectCell.innerHTML = `
                                 <div style="font-weight: bold; margin-bottom: ${Math.floor(cellPadding * 0.5)}px; font-size: ${Math.floor(fontSize * 1.05)}px;">${subjectData.Subject}</div>
-                                <div style="font-size: ${Math.floor(fontSize * 0.75)}px; opacity: 0.9; font-weight: 600;">${subjectData['Students Sets']}</div>
+                                <div style="font-size: ${Math.floor(fontSize * 0.75)}px; opacity: 0.9; font-weight: 600;">${subjectData['Students Sets']} (${subjectData.Room})</div>
                             `;
                         } else if (currentViewMode === 'room') {
                             subjectCell.innerHTML = `
@@ -4811,5 +4812,5 @@ S6,4,12L6,KTPL,C. CHÂU,A306`;
             return table;
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988caa1564657e32',t:'MTc1OTQ5Njg2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988d691d1745509a',t:'MTc1OTUwNDY5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
